@@ -1,0 +1,126 @@
+﻿@model GuitarShop.Models.Guitar
+
+<!-- Main Container -->
+<div class="container-fluid bg-1" style=" padding-top: 60px; padding-bottom: 40px;">
+    <h1 class="text-center" style="padding-bottom:10px; font-size:40px;">Search</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form asp-action="Search" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="Price" class="form-control input-sm" placeholder="1299.99">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Builder" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="Builder" class="form-control input-sm" placeholder="Fender">
+                        <span asp-validation-for="Builder" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Model" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="Model" class="form-control input-sm" placeholder="Stratocastor">
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Type" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="Type" class="form-control input-sm" placeholder="Electric">
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="BackWood" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="BackWood" class="form-control input-sm" placeholder="Alder">
+                        <span asp-validation-for="BackWood" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="TopWood" class="control-label" style="font-size:20px;"></label>
+                        <input asp-for="TopWood" class="form-control input-sm" placeholder="Alder">
+                        <span asp-validation-for="TopWood" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="IsGuitarOfTheWeek" /> @Html.DisplayNameFor(model => model.IsGuitarOfTheWeek)
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Search" class="btn btn-lg btn-warning" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        @*<a asp-action="Register" class="text-center">Register new account</a>*@
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+@*@{
+        ViewData["Title"] = "Search";
+    }
+
+    <h2>Search</h2>
+
+    <h1>Search Guitar</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Search">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Builder" class="control-label"></label>
+                    <input asp-for="Builder" class="form-control" />
+                    <span asp-validation-for="Builder" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Model" class="control-label"></label>
+                    <input asp-for="Model" class="form-control" />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Type" class="control-label"></label>
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BackWood" class="control-label"></label>
+                    <input asp-for="BackWood" class="form-control" />
+                    <span asp-validation-for="BackWood" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TopWood" class="control-label"></label>
+                    <input asp-for="TopWood" class="form-control" />
+                    <span asp-validation-for="TopWood" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsGuitarOfTheWeek" /> @Html.DisplayNameFor(model => model.IsGuitarOfTheWeek)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="padding-top:210px;"></div>*@
+
+
