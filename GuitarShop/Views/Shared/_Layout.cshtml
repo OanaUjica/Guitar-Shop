@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/content/site.css" />
 </head>
 <body style="background-color:whitesmoke">
-
+    <!-- Navigation Bar Section -->
     <nav class="navbar navbar-inverse navbar-fixed-top" style="letter-spacing: 4px;">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -24,7 +24,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage">GUITAR SHOP</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">GUITAR SHOP</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -37,6 +37,7 @@
     </nav>
 
 
+    <!-- Body Section -->
     <div>
         @RenderBody()
     </div>
@@ -46,6 +47,6 @@
     <footer class="text-center" style="background-color: #2d2d30; color: #f5f5f5; padding: 30px;">
         <p style="padding-top:10px;">Made By Oana Ujica:<a href="https://codingwithoana.wordpress.com/" data-toggle="tooltip" title="Visit www.codingwithoana.wordpress.com" target="_blank" style="color:darkgoldenrod">   www.codingwithoana.wordpress.com</a></p>
     </footer>
-    <!-- Footer -->
+
 </body>
 </html>

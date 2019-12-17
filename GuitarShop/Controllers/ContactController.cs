@@ -16,7 +16,28 @@ namespace GuitarShop.Controllers
             _contactRepository = contactRepository;
         }
 
+
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Index(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                _contactRepository.AddContact(contact);
+                return RedirectToAction("ContactComplete");
+            }
+            return View(contact);
+
+        }
+
+
+        public IActionResult ContactComplete()
         {
             return View();
         }

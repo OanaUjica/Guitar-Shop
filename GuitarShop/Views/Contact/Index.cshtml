@@ -1,47 +1,41 @@
 ﻿@model Contact
 
 
+<div class="container">
+    <form asp-action="Index" method="post" class="form-horizontal" role="form" style=" padding-top: 100px; padding-bottom: 400px;">
+        <h1 class="text-center" style="padding-bottom: 50px;">Contact Us</h1>
 
-<form asp-action="Index" method="post" class="form-horizontal" role="form" style=" padding-top: 100px; padding-bottom: 400px;">
-    <h1 class="text-center" style="padding-bottom: 50px;">Contact Us</h1>
+        <div asp-validation-summary="All" class="text-danger"></div>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-
-    <div class="form-group">
-        <label asp-for="Name" class="col-md-4 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-4 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="Name" class="form-control" placeholder="Enter name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-4 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-4 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="Email" class="form-control" placeholder="Enter email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Message" class="col-md-4 control-label"></label>
-        <div class="col-md-5">
-            <textarea asp-for="Message" class="form-control"></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Message" class="col-md-4 control-label"></label>
+            <div class="col-md-5">
+                <textarea asp-for="Message" class="form-control" placeholder="Enter message" style="height:130px"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="ContactMe" class="col-md-4 control-label"></label>
-        <div class="col-md-5">
-            <input type="checkbox" asp-for="ContactMe" class="form-control" />
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-5">
+                <input type="submit" class="btn btn-warning" value="Send" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-4 col-md-5">
-            <input type="submit" class="btn btn-warning" value="Send" />
-        </div>
-    </div>
-
-</form>
+    </form>
+</div>
