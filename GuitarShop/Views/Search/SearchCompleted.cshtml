@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GuitarShop.Models.Guitar>
+
+<div class="container" style="padding-top: 100px; padding-bottom: 530px; color:black;">
+    <h1 class="text-center" style="padding-bottom:60px;">We have guitars of your preferences!</h1>
+
+    <table class="table">
+        <thead style="font-size:25px;">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Price) (EUR)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Builder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BackWood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TopWood)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="font-size:16px;">
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td style="color:darkgoldenrod; font-weight:600;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Builder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BackWood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TopWood)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -17,7 +17,7 @@ namespace GuitarShop.Controllers
             _guitarInventory = guitarInventory;
         }
 
-
+        // View of the Main Page
         public IActionResult Index()
         {
             var guitars = _guitarInventory.GetAllGuitars();
@@ -25,10 +25,11 @@ namespace GuitarShop.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Search()
+        // Returns a View Page with the list of all the guitars
+        public IActionResult Guitars()
         {
-            return View();
+            var guitars = _guitarInventory.GetAllGuitars();
+            return View(guitars);
         }
 
     }

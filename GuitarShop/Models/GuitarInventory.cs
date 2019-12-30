@@ -15,17 +15,26 @@ namespace GuitarShop.Models
         }
 
 
-
-        public IEnumerable<Guitar> GetAllGuitars()
+        // review this method!!!
+        public List<Guitar> GetAllGuitars()
         {
-            return _appDbContext.Guitars;
+            throw new NotImplementedException();
         }
 
+
+        //// Get all guitars from database
+        //public List<Guitar> GetAllGuitars()
+        //{
+        //    return _appDbContext.Guitars;
+        //}
+
+        // Get guitar by Id from the database
         public Guitar GetGuitarById(int guitarId)
         {
             return _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitarId);
         }
 
+        // Search for the list of guitar, from the database, that matches the user requirements
         public List<Guitar> Search(Guitar searchGuitar)
         {
             List<Guitar> matchingGuitars = new List<Guitar>();

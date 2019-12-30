@@ -7,7 +7,7 @@ namespace GuitarShop.Models
 {
     public interface IGuitarInventory
     {
-        IEnumerable<Guitar> GetAllGuitars();
+        List<Guitar> GetAllGuitars();
 
         Guitar GetGuitarById(int guitarId);
 
