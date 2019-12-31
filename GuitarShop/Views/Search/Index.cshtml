@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label asp-for="Builder" class="control-label" style="font-size:20px;"></label>
                         <select asp-for="Builder" asp-items="Html.GetEnumSelectList<Builder>()" class="form-control">
-                            <option selected="selected" value="">Please select</option>
+                            <option selected="selected" value="">Please select builder</option>
                         </select>                      
                         <span asp-validation-for="Builder" class="text-danger"></span>
                     </div>
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label asp-for="Model" class="control-label" style="font-size:20px;"></label>                      
                         <select asp-for="Model" asp-items="Html.GetEnumSelectList<Model>()" class="form-control">
-                            <option selected="selected" value="">Please select</option>
+                            <option selected="selected" value="">Please select model</option>
                         </select>
                         <span asp-validation-for="Model" class="text-danger"></span>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label asp-for="Type" class="control-label" style="font-size:20px;"></label>
                         <select asp-for="Type" asp-items="Html.GetEnumSelectList<GuitarShop.Models.Type>()" class="form-control">
-                            <option selected="selected" value="">Please select</option>
+                            <option selected="selected" value="">Please select type</option>
                         </select>
                         <span asp-validation-for="Type" class="text-danger"></span>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label asp-for="BackWood" class="control-label" style="font-size:20px;"></label>
                         <select asp-for="BackWood" asp-items="Html.GetEnumSelectList<BackWood>()" class="form-control">
-                            <option selected="selected" value="">Please select</option>
+                            <option selected="selected" value="">Please select backwood</option>
                         </select>
                         <span asp-validation-for="BackWood" class="text-danger"></span>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label asp-for="TopWood" class="control-label" style="font-size:20px;"></label>
                         <select asp-for="TopWood" asp-items="Html.GetEnumSelectList<TopWood>()" class="form-control">
-                            <option selected="selected" value="">Please select</option>
+                            <option selected="selected" value="">Please select topwood</option>
                         </select>
                         <span asp-validation-for="TopWood" class="text-danger"></span>
                     </div>

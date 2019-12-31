@@ -33,7 +33,7 @@ namespace GuitarShop.Controllers
                 matchingGuitars = _guitarInventory.Search(guitars);
                 return View(matchingGuitars);
             }
-            return View(guitars);
+            return RedirectToAction(nameof(Index));
 
         }
 
