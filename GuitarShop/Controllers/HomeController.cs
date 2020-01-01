@@ -9,27 +9,15 @@ namespace GuitarShop.Controllers
 {
     public class HomeController : Controller
     {
-
-        private readonly IGuitarInventory _guitarInventory;
-
-        public HomeController(IGuitarInventory guitarInventory)
-        {
-            _guitarInventory = guitarInventory;
-        }
-
-        // View of the Main Page
+        /// <summary>
+        /// Action method GET 
+        /// </summary>
+        /// <returns>
+        /// Main page of the application
+        /// </returns>
         public IActionResult Index()
         {
-            var guitars = _guitarInventory.GetAllGuitars();
-            return View(guitars);
-        }
-
-
-        // Returns a View Page with the list of all the guitars
-        public IActionResult Guitars()
-        {
-            var guitars = _guitarInventory.GetAllGuitars();
-            return View(guitars);
+            return View();
         }
 
     }

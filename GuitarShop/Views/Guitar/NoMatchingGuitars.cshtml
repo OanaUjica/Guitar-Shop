@@ -1,0 +1,19 @@
+﻿
+<!-- Search result, with no matching guitar-->
+<div class="container" style="padding-top: 100px; padding-bottom: 438px; color:black;">
+    <div>
+        <h1 class="text-center" style="padding-bottom: 100px;">We have no guitars of your preferences!</h1>
+        <img src="~/images/09fc3ba997d72105b72c1463e2e2ae20.png" alt="Sad face" class="img-responsive img-circle pull-right" style="height: 80px;" />
+    </div>
+
+
+    <form style="padding-top:20px;">
+        <div class="form-group">
+            <input asp-action="Search" asp-controller="Guitar" type="submit" value="Would you like to search for another guitar?" class="btn btn-lg btn-warning btn-block" />
+        </div>
+        <div class="form-group">
+            <input asp-action="Index" asp-controller="Guitar" type="submit" value="Or would you like to see our list of guitars?" class="btn btn-lg btn-warning btn-block" />
+        </div>
+    </form>
+</div>
+

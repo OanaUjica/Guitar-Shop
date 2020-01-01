@@ -13,32 +13,37 @@ namespace GuitarShop.Models
         public decimal Price { get; set; }
 
         [Required]
-        [EnumDataType(typeof(Builder))]
+        [EnumDataType(typeof(Builder), ErrorMessage = "Please enter a builder.")]
         public Builder Builder { get; set; }
 
         [Required]
-        [EnumDataType(typeof(Model))]
+        [EnumDataType(typeof(Model), ErrorMessage = "Please enter a model.")]
         public Model Model { get; set; }
 
         [Required]
-        [EnumDataType(typeof(Type))]
+        [EnumDataType(typeof(Type), ErrorMessage = "Please enter a type.")]
         public Type Type { get; set; }
 
         [Required]
-        [EnumDataType(typeof(BackWood))]
+        [EnumDataType(typeof(BackWood), ErrorMessage = "Please enter a back wood type.")]
+        [Display(Name = "Back Wood")]
         public BackWood BackWood { get; set; }
 
         [Required]
-        [EnumDataType(typeof(TopWood))]
+        [EnumDataType(typeof(TopWood), ErrorMessage = "Please enter a top wood type.")]
+        [Display(Name = "Top Wood")]
         public TopWood TopWood { get; set; }
 
         public bool IsGuitarOfTheWeek { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        public string Description { get; set; }
     }
 
     public enum Builder
     {
-        Fender, Martin, Taylor, Yamaha
+        Fender, Martin, Taylor, Yamaha, Ibanez, Gibson, Epiphone
     }
 
     public enum Type
@@ -48,16 +53,16 @@ namespace GuitarShop.Models
 
     public enum Model
     {
-        Stratocastor, Martin, TaylorBuilderEdition, Yamaha, GuildTradition, FenderAllMahogany 
+        Stratocastor, Martin, TaylorBuilderEdition, Yamaha, GuildTradition, FenderAllMahogany, Ibanez, Gibson, Epiphone
     }
 
     public enum BackWood
     {
-        Alder, EastIndianRosewood, Koa, SolidRosewood, SolidIndianRosewood, LaminatedMahogany
+        Alder, EastIndianRosewood, Koa, SolidRosewood, SolidIndianRosewood, LaminatedMahogany, Mahogany, Basswood
     }
 
     public enum TopWood
     {
-        Alder, SitkaSpruce, TorrefieldSitkaSpruce, SolidSitkaSpruce, SolidMahogany
+        Alder, SitkaSpruce, TorrefieldSitkaSpruce, SolidSitkaSpruce, SolidMahogany, Basswood, Mahogany
     }
 }

@@ -1,8 +1,69 @@
 ﻿@model Contact
 
 
-<div class="container">
-    <form asp-action="Index" method="post" class="form-horizontal" role="form" style=" padding-top: 100px; padding-bottom: 398px;">
+
+<!-- Container (Contact Section) -->
+<div class="container" style="padding-bottom:60px; padding-top:78px;">
+    <h1 class="text-center" style="padding-bottom:50px;">Contact Us</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Interested? Drop a note.</p>
+            <p><span class="glyphicon glyphicon-map-marker"></span>Cluj-Napoca, RO</p>
+            <p><span class="glyphicon glyphicon-phone"></span>Phone: +04 0744102720</p>
+            <p><span class="glyphicon glyphicon-envelope"></span>Email: oana.m.ujica@gmail.com</p>
+        </div>
+
+        <form asp-action="Index" method="post" role="form">
+            <div class="col-md-8">
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" asp-for="Name" placeholder="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" asp-for="Email" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <textarea class="form-control" asp-for="Message" placeholder="Message\Special requirement" rows="7"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <input type="submit" class="btn btn-warning pull-right" value="Send Message" />                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Image of location/map (Google Maps Section) -->
+    <br>
+    <div id="map" style="width:100%; height:360px;"></div>
+
+    <script>
+        function myMap() {
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {
+                center: new google.maps.LatLng(46.765850, 23.553433), zoom: 10
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7YsKYn9RyEi-J9y0t1EEZqe_0-KehXA&callback=myMap"
+            type="text/javascript"></script>
+
+</div>
+
+@*<div class="container">
+    <form asp-action="Index" method="post" class="form-horizontal" role="form" style="padding-top: 100px;">
         <h1 class="text-center" style="padding-bottom: 50px;">Contact Us</h1>
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -10,7 +71,7 @@
         <div class="form-group">
             <label asp-for="Name" class="col-md-4 control-label"></label>
             <div class="col-md-5">
-                <input asp-for="Name" class="form-control" placeholder="Enter name"/>
+                <input asp-for="Name" class="form-control" placeholder="Enter name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
@@ -18,7 +79,7 @@
         <div class="form-group">
             <label asp-for="Email" class="col-md-4 control-label"></label>
             <div class="col-md-5">
-                <input asp-for="Email" class="form-control" placeholder="Enter email"/>
+                <input asp-for="Email" class="form-control" placeholder="Enter email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
@@ -33,9 +94,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-4 col-md-5">
-                <input type="submit" class="btn btn-warning" value="Send" />
+                <input type="submit" class="btn btn-warning" value="Send Message" />
             </div>
         </div>
-
     </form>
-</div>
+</div>*@

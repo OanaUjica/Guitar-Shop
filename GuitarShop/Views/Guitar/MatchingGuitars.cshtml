@@ -1,6 +1,6 @@
-﻿@model IEnumerable<GuitarShop.Models.Guitar>
+﻿@model IEnumerable<Guitar>
 
-<div class="container" style="padding-top: 100px; padding-bottom: 530px; color:black;">
+<div class="container" style="padding-top: 100px; padding-bottom: 700px; color:black;">
     <h1 class="text-center" style="padding-bottom:60px;">We have guitars of your preferences!</h1>
 
     <table class="table">
@@ -52,12 +52,15 @@
                         @Html.DisplayFor(modelItem => item.TopWood)
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |  
+                        @Html.ActionLink("Add to WishList", "Details", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+
 
 
