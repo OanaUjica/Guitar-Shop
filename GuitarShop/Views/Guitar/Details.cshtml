@@ -1,24 +1,31 @@
 ﻿@model Guitar
 
-<div class="container" style="padding-bottom:27px;">
+<div class="container" style="padding-top:70px;">
     <div class="row">
         <div class="thumbnail">
             <img alt="@Model.Model" src="@Model.ImageUrl">
             <div class="caption-full">
-                <h3><b>€ @Model.Price</b></h3>
-                <h4><b>Model:</b> @Model.Model</h4>
-                <h4><b>Builder:</b> @Model.Builder</h4>
-                <h4><b>Type:</b> @Model.Type</h4>
-                <h4><b>Top Wood:</b> @Model.TopWood</h4>
-                <h4><b>Back Wood:</b> @Model.BackWood</h4>
-                <p style="font-size:17px;"><b>Description:</b> <br />@Model.Description</p>
+
+                <div class="col-md-4">
+                    <h2><b>€ @Model.Price</b></h2>
+                    <br />
+                    <h4><b>Model:</b> @Model.Model.Description()</h4>
+                    <h4><b>Builder:</b> @Model.Builder</h4>
+                    <h4><b>Type:</b> @Model.Type</h4>
+                    <h4><b>Back Wood:</b> @Model.BackWood.Description()</h4>
+                    <h4><b>Top Wood:</b> @Model.TopWood.Description()</h4>
+                </div>
+
+                <div class="col-md-8" style="padding-top:87px;">                    
+                    <p class="pull-right" ; style="font-size:18px;"><b>Description:</b> <br />@Model.Description</p>
+                </div>
+                <form style="padding-top:20px;">
+                    <div class="form-group">
+                        <input asp-action="Index" asp-controller="Guitar" type="submit" value="Back to guitars list" class="btn btn-lg btn-warning btn-block" />
+                    </div>
+                </form>
             </div>
         </div>
+
     </div>
 </div>
-
-
-
-@*<div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@

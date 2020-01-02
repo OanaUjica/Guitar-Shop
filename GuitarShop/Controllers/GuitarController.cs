@@ -20,9 +20,7 @@ namespace GuitarShop.Controllers
         /// <summary>
         /// Action method GET.
         /// </summary>
-        /// <returns>
-        /// View page with the list of all the guitars.
-        /// </returns>
+        /// <returns>View page with the list of all the guitars.</returns>
         public IActionResult Index()
         {
             var guitars = _guitarInventory.GetAllGuitars();
@@ -31,11 +29,9 @@ namespace GuitarShop.Controllers
 
 
         /// <summary>
-        /// Action method GET.
+        /// Action method GET that searches for guitars that matches with the ones in the guitars inventory.
         /// </summary>
-        /// <returns>
-        /// View page with the search of guitars form.
-        /// </returns>
+        /// <returns>View page with the search of guitars form.</returns>
         public IActionResult Search()
         {
             return View();
@@ -71,15 +67,17 @@ namespace GuitarShop.Controllers
         /// <summary>
         /// Action method GET invoked only if there is no matching guitars with the input form entered by the user.
         /// </summary>
-        /// <returns>
-        /// View page with a message for user.
-        /// </returns>
+        /// <returns>View page with a message for user.</returns>
         public IActionResult NoMatchingGuitars()
         {
             return View();
         }
 
-
+        /// <summary>
+        /// Action method GET invoked when the user what to see the details of a guitar, from the guitars inventory, that matches with the id introduces as parameter.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View page with matching guitar.</returns>
         public IActionResult Details(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);

@@ -28,7 +28,5 @@ namespace GuitarShop.Models
         [StringLength(5000, ErrorMessage = "Your message is required")]
         [DataType(DataType.Text)]
         public string Message { get; set; }
-
-        public bool ContactMe { get; set; }
     }
 }
