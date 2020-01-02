@@ -21,7 +21,7 @@
                             <a asp-action="Details" asp-controller="Guitar" asp-route-id="@guitar.Id" class="btn btn-warning btn pull-right">
                                 <span class="glyphicon glyphicon-eye-open"></span>  View details   
                             </a>
-                            <a asp-action="WishList" asp-controller="Guitar" class="btn btn-warning btn">
+                            <a asp-action="WishList" asp-controller="Guitar" asp-route-id="@guitar.Id" class="btn btn-warning btn">
                                 <span class="glyphicon glyphicon-heart-empty"></span> Add to wishlist
                             </a>
                         </div>

@@ -74,7 +74,7 @@ namespace GuitarShop.Controllers
         }
 
         /// <summary>
-        /// Action method GET invoked when the user what to see the details of a guitar, from the guitars inventory, that matches with the id introduces as parameter.
+        /// Action method GET invoked when the user what to see the details of a guitar, from the guitars inventory, that matches with the id introduced as parameter.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>View page with matching guitar.</returns>
@@ -82,8 +82,22 @@ namespace GuitarShop.Controllers
         {
             var guitar = _guitarInventory.GetGuitarById(id);
             if (guitar == null) return NotFound();
-
             return View(guitar);
+        }
+
+        /// <summary>
+        /// Action method GET invoked when the user chooses as favorite a guitar.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The View page with the new favorite guitar add to a list of favorite guitars.</returns>
+        public IActionResult WishList(int id)
+        {
+            var guitar = _guitarInventory.GetGuitarById(id);
+            var wishListGuitars = new List<Guitar>();
+            wishListGuitars.Add(guitar);
+
+            if (guitar == null) return NotFound();
+            return View(wishListGuitars);
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Guitar>
+
+
+<div class="container text-center" style="padding-top:100px; padding-bottom: 420px;">
+    <h1 class="text-center" style="padding-bottom:60px; color:black; font-size:45px;">Your WishList</h1>
+
+    <div class="row" style="background-color:darkgoldenrod; padding:30px 20px; border-radius:5px;">
+        <ul style="list-style-type: none;">
+            @foreach (var guitar in Model)
+            {
+
+            <li style="font-size:25px;">
+
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <img src="@guitar.ImageUrl" alt="guitar" style="width: 100%" class="img-responsive">
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <ul style="list-style-type: none;">
+                        <li>Price: @guitar.Price</li>
+                        <li><h4>Model: @guitar.Model</h4></li>
+                        <li><h4>Builder: @guitar.Builder</h4></li>
+                        <li><h4>Type: @guitar.Type</h4></li>
+                        <li><h4>BackWood: @guitar.BackWood</h4></li>
+                        <li><h4>TopWood: @guitar.TopWood</h4></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <a class="btn btn-danger btn-lg" asp-action="delete" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-trash"></span>  Delete</a>
+                    <a class="btn btn-warning btn-lg" asp-action="delete" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-shopping-cart"></span>  Basket</a>
+                </div>
+
+            </li>
+
+            }
+        </ul>
+    </div>
+</div>
+
