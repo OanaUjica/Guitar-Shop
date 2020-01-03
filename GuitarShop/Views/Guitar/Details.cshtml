@@ -1,11 +1,18 @@
 ﻿@model Guitar
 
-<div class="container" style="padding-top:70px;">
-    <div class="row">
-        <div class="thumbnail">
-            <img alt="@Model.Model" src="@Model.ImageUrl">
-            <div class="caption-full">
+<div style="background-color:darkgoldenrod; padding-bottom:20px;">
+    <div class="container" style="padding-top:70px;">
+        <div class="row">
+            <div class="thumbnail">
+                <img alt="@Model.Model" src="@Model.ImageUrl">
+            </div>
+        </div>
+    </div>
 
+    <div class="container" style="background-color:white; padding-bottom:60px;">
+        <div class="row">
+
+            <div class="container">
                 <div class="col-md-4">
                     <h2><b>€ @Model.Price</b></h2>
                     <br />
@@ -16,16 +23,23 @@
                     <h4><b>Top Wood:</b> @Model.TopWood.Description()</h4>
                 </div>
 
-                <div class="col-md-8" style="padding-top:87px;">                    
+                <div class="col-md-8" style="padding-top:87px;">
                     <p class="pull-right" ; style="font-size:18px;"><b>Description:</b> <br />@Model.Description</p>
                 </div>
-                <form style="padding-top:20px;">
-                    <div class="form-group">
-                        <input asp-action="Index" asp-controller="Guitar" type="submit" value="Back to guitars list" class="btn btn-lg btn-warning btn-block" />
-                    </div>
-                </form>
             </div>
-        </div>
 
+            <div class="container" style="padding-top:60px;">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <a class="btn btn-primary btn-lg btn-block" asp-action="Index" asp-controller="Guitar"><span class="glyphicon glyphicon-list"></span> View our list of guitars</a>
+                    <a class="btn btn-info btn-lg btn-block" asp-action="Search" asp-controller="Guitar"><span class="glyphicon glyphicon-search"></span> Search for another guitar</a>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <a class="btn btn-warning btn-lg btn-block" asp-action="WishList" asp-controller="Guitar" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-heart-empty"></span>  Add to wishlist</a>
+                    <a class="btn btn-default btn-lg btn-block" asp-action="ShoppingCart" asp-controller="Guitar" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-shopping-cart"></span>  Add to shopping cart</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
