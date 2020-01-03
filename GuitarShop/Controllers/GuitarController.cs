@@ -46,7 +46,7 @@ namespace GuitarShop.Controllers
         /// View page with the list of matching guitars or with a validation error message in case of wrong input.
         /// </returns>
         [HttpPost]
-        public IActionResult MatchingGuitars([Bind("Builder,Model,Type,BackWood,TopWood")] Guitar guitars)
+        public IActionResult MatchingGuitars([Bind("Builder,Model,Type,BackWood,TopWood")] GuitarSpecifications guitars)
         {
             var matchingGuitars = new List<Guitar>();
             if (ModelState.IsValid)

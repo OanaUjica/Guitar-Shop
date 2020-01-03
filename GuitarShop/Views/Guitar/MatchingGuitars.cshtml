@@ -3,7 +3,7 @@
 
 <div style="background-color:darkgoldenrod">
 
-    <div class="container" style="padding-top:100px; padding-bottom: 100px;">
+    <div class="container" style="padding-top:100px; padding-bottom: 116px;">
         <h1 class="text-center" style="padding-bottom:60px; font-size:45px;">We have guitars of your preferences!</h1>
 
         @foreach (var guitar in Model)
@@ -13,7 +13,7 @@
                 <ul style="list-style-type: none;">
                     <li style="font-size:25px;">
 
-                        <a asp-action="Details" asp-controller="Guitar" asp-route-id="@guitar.Id" data-toggle="tooltip" title="View details of guitar @guitar.Model">
+                        <a asp-action="Details" asp-controller="Guitar" asp-route-id="@guitar.Id" data-toggle="tooltip" title="View details of guitar @guitar.Specifications.Model">
                             <div class="col-sm-4 col-md-4 col-lg-4">
                                 <img src="@guitar.ImageUrl" alt="guitar" style="width: 100%" class="img-responsive">
                             </div>
@@ -22,11 +22,11 @@
                         <div class="col-sm-4 col-md-4 col-lg-4">
                             <ul style="list-style-type: none;">
                                 <li style="font-size:30px;"><b>@guitar.Price €</b></li>
-                                <li><h4><b>Model: </b>@guitar.Model</h4></li>
-                                <li><h4><b>Builder: </b>@guitar.Builder</h4></li>
-                                <li><h4><b>Type: </b>@guitar.Type</h4></li>
-                                <li><h4><b>BackWood: </b>@guitar.BackWood</h4></li>
-                                <li><h4><b>TopWood: </b>@guitar.TopWood</h4></li>
+                                <li><h4><b>Model: </b>@guitar.Specifications.Model</h4></li>
+                                <li><h4><b>Builder: </b>@guitar.Specifications.Builder</h4></li>
+                                <li><h4><b>Type: </b>@guitar.Specifications.Type</h4></li>
+                                <li><h4><b>BackWood: </b>@guitar.Specifications.BackWood</h4></li>
+                                <li><h4><b>TopWood: </b>@guitar.Specifications.TopWood</h4></li>
                             </ul>
                         </div>
 

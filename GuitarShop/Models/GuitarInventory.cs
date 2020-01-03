@@ -35,10 +35,10 @@ namespace GuitarShop.Models
         }
 
         // Search for the list of guitar, from the database, that matches the user requirements
-        public List<Guitar> Search(Guitar searchGuitar)
+        public List<Guitar> Search(GuitarSpecifications searchGuitar)
         {
             List<Guitar> matchingGuitars = new List<Guitar>();
-            var guitar = _appDbContext.Guitars.FirstOrDefault(g => g.Builder == searchGuitar.Builder);
+            var guitar = _appDbContext.Guitars.FirstOrDefault(g => g.Specifications.Builder == searchGuitar.Builder);
             matchingGuitars.Add(guitar);
             return matchingGuitars;
         }

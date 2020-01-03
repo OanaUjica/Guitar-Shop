@@ -11,6 +11,6 @@ namespace GuitarShop.Models
 
         Guitar GetGuitarById(int guitarId);
 
-        List<Guitar> Search(Guitar searchGuitar);
+        List<Guitar> Search(GuitarSpecifications searchGuitar);
     }
 }

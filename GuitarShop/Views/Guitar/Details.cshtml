@@ -4,7 +4,7 @@
     <div class="container" style="padding-top:70px;">
         <div class="row">
             <div class="thumbnail">
-                <img alt="@Model.Model" src="@Model.ImageUrl">
+                <img alt="@Model.Specifications.Model" src="@Model.ImageUrl">
             </div>
         </div>
     </div>
@@ -16,11 +16,11 @@
                 <div class="col-md-4">
                     <h2><b>€ @Model.Price</b></h2>
                     <br />
-                    <h4><b>Model:</b> @Model.Model.Description()</h4>
-                    <h4><b>Builder:</b> @Model.Builder</h4>
-                    <h4><b>Type:</b> @Model.Type</h4>
-                    <h4><b>Back Wood:</b> @Model.BackWood.Description()</h4>
-                    <h4><b>Top Wood:</b> @Model.TopWood.Description()</h4>
+                    <h4><b>Model:</b> @Model.Specifications.Model.Description()</h4>
+                    <h4><b>Builder:</b> @Model.Specifications.Builder</h4>
+                    <h4><b>Type:</b> @Model.Specifications.Type</h4>
+                    <h4><b>Back Wood:</b> @Model.Specifications.BackWood.Description()</h4>
+                    <h4><b>Top Wood:</b> @Model.Specifications.TopWood.Description()</h4>
                 </div>
 
                 <div class="col-md-8" style="padding-top:87px;">
