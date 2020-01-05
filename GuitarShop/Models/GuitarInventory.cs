@@ -14,33 +14,50 @@ namespace GuitarShop.Models
             _appDbContext = appDbContext;
         }
 
-
-        // review this method!!!
+        // Get all guitars from database
         public List<Guitar> GetAllGuitars()
         {
-            throw new NotImplementedException();
+            var specs = _appDbContext.GuitarSpecifications.ToList();
+            var allGuitars = _appDbContext.Guitars.ToList();
+
+            return allGuitars;
         }
-
-
-        //// Get all guitars from database
-        //public List<Guitar> GetAllGuitars()
-        //{
-        //    return _appDbContext.Guitars;
-        //}
 
         // Get guitar by Id from the database
         public Guitar GetGuitarById(int guitarId)
         {
-            return _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitarId);
+            var specs = _appDbContext.GuitarSpecifications.ToList();
+            var guitarById = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitarId); ;
+            return guitarById;
         }
 
         // Search for the list of guitar, from the database, that matches the user requirements
-        public List<Guitar> Search(GuitarSpecifications searchGuitar)
+        public List<Guitar> Search(GuitarSpecification _searchGuitar)
         {
-            List<Guitar> matchingGuitars = new List<Guitar>();
-            var guitar = _appDbContext.Guitars.FirstOrDefault(g => g.Specifications.Builder == searchGuitar.Builder);
-            matchingGuitars.Add(guitar);
+            var matchingGuitars = new List<Guitar>();
+            var spec = _appDbContext.GuitarSpecifications.ToList();
+            var allPropGuitars = _appDbContext.Guitars.ToList();
+
+            foreach (var guitar in allPropGuitars)
+            {
+                if(guitar != null)
+                {
+                    if (guitar.Specifications.Builder != _searchGuitar.Builder) continue;
+                    if (guitar.Specifications.Model != _searchGuitar.Model) continue;
+                    if (guitar.Specifications.Type != _searchGuitar.Type) continue;
+                    if (guitar.Specifications.BackWood != _searchGuitar.BackWood) continue;
+                    if (guitar.Specifications.TopWood != _searchGuitar.TopWood) continue;
+                    matchingGuitars.Add(guitar);
+                }
+                else return NullReferenceException();
+            }
+
             return matchingGuitars;
+        }
+
+        private List<Guitar> NullReferenceException()
+        {
+            throw new NotImplementedException("There are no specifications!");
         }
     }
 }

@@ -4,14 +4,16 @@ using GuitarShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GuitarShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200105113454_InitialMigrationVersion2")]
+    partial class InitialMigrationVersion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,12 +59,16 @@ namespace GuitarShop.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("SpecificationsId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SpecificationsId");
 
                     b.ToTable("Guitars");
                 });
 
-            modelBuilder.Entity("GuitarShop.Models.GuitarSpecification", b =>
+            modelBuilder.Entity("GuitarShop.Models.GuitarSpecifications", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,8 +78,6 @@ namespace GuitarShop.Migrations
 
                     b.Property<int>("Builder");
 
-                    b.Property<int?>("GuitarId");
-
                     b.Property<int>("Model");
 
                     b.Property<int>("TopWood");
@@ -82,21 +86,14 @@ namespace GuitarShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuitarId");
-
-                    b.ToTable("Guitars");
+                    b.ToTable("GuitarSpecifications");
                 });
 
-            modelBuilder.Entity("GuitarShop.Models.GuitarSpecification", b =>
+            modelBuilder.Entity("GuitarShop.Models.Guitar", b =>
                 {
-                    b.HasOne("GuitarShop.Models.Guitar", "Guitar")
+                    b.HasOne("GuitarShop.Models.GuitarSpecifications", "Specifications")
                         .WithMany()
-                        .HasForeignKey("GuitarId");
-
-                    b.HasOne("GuitarShop.Models.Guitar")
-                        .WithOne("Specifications")
-                        .HasForeignKey("GuitarShop.Models.GuitarSpecification", "Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SpecificationsId");
                 });
 #pragma warning restore 612, 618
         }

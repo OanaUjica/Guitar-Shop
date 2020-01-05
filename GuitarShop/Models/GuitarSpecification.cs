@@ -1,14 +1,19 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GuitarShop.Models
 {
-    public class GuitarSpecifications
+    [Owned]
+    public class GuitarSpecification
     {
+        public int Id { get; set; }
+
         [Required]
         [EnumDataType(typeof(Builder), ErrorMessage = "Please enter a builder.")]
         public Builder Builder { get; set; }
@@ -30,22 +35,25 @@ namespace GuitarShop.Models
         [EnumDataType(typeof(TopWood), ErrorMessage = "Please enter a top wood type.")]
         [Display(Name = "Top Wood")]
         public TopWood TopWood { get; set; }
+
+        //public int GuitarId { get; set; }
+        public Guitar Guitar { get; set; }
     }
 
     public enum Builder
     {
-        Fender, Martin, Taylor, Yamaha, Ibanez, Gibson, Epiphone
+        Fender = 0, Martin, Taylor, Yamaha, Ibanez, Gibson, Epiphone
     }
 
     public enum Type
     {
-        electric, acoustic
+        electric = 0, acoustic
     }
 
     public enum Model
     {
         [Description("Stratocaster")]
-        Stratocaster,
+        Stratocaster = 0,
         [Display(Name = "Martin D-28")]
         [Description("Martin D-28")]
         MartinD28,
@@ -75,7 +83,7 @@ namespace GuitarShop.Models
     public enum BackWood
     {
         [Description("Alder")]
-        Alder,
+        Alder = 0,
         [Display(Name = "East Indian Rosewood")]
         [Description("East Indian Rosewood")]
         EastIndianRosewood,
@@ -102,7 +110,7 @@ namespace GuitarShop.Models
     public enum TopWood
     {
         [Description("Alder")]
-        Alder,
+        Alder = 0,
         [Display(Name = "Sitka Spruce")]
         [Description("Sitka Spruce")]
         SitkaSpruce,

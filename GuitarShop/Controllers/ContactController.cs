@@ -11,10 +11,7 @@ namespace GuitarShop.Controllers
     {
         private readonly IContactRepository _contactRepository;
 
-        public ContactController(IContactRepository contactRepository)
-        {
-            _contactRepository = contactRepository;
-        }
+        public ContactController(IContactRepository contactRepository) => _contactRepository = contactRepository;
 
 
 

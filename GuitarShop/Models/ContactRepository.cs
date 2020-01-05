@@ -13,11 +13,12 @@ namespace GuitarShop.Models
         {
             _context = context;
         }
+
+
         public void AddContact(Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
-
         }
     }
 }

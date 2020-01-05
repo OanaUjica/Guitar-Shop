@@ -11,10 +11,7 @@ namespace GuitarShop.Controllers
     {
         private readonly IGuitarInventory _guitarInventory;
 
-        public GuitarController(IGuitarInventory guitarInventory)
-        {
-            _guitarInventory = guitarInventory;
-        }
+        public GuitarController(IGuitarInventory guitarInventory) => _guitarInventory = guitarInventory;
 
 
         /// <summary>
@@ -22,9 +19,10 @@ namespace GuitarShop.Controllers
         /// </summary>
         /// <returns>View page with the list of all the guitars.</returns>
         public IActionResult Index()
-        {
+        {            
             var guitars = _guitarInventory.GetAllGuitars();
-            return View(guitars);
+            if (guitars != null) return View(guitars);
+            return NotFound();
         }
 
 
@@ -46,15 +44,19 @@ namespace GuitarShop.Controllers
         /// View page with the list of matching guitars or with a validation error message in case of wrong input.
         /// </returns>
         [HttpPost]
-        public IActionResult MatchingGuitars([Bind("Builder,Model,Type,BackWood,TopWood")] GuitarSpecifications guitars)
+        public IActionResult MatchingGuitars([Bind("Builder,Model,Type,BackWood,TopWood")] GuitarSpecification guitars)
         {
             var matchingGuitars = new List<Guitar>();
+
             if (ModelState.IsValid)
             {
                 if (guitars != null)
                 {
                     matchingGuitars = _guitarInventory.Search(guitars);
-                    if (matchingGuitars.Count != 0) return View(matchingGuitars);
+                    if (matchingGuitars.Count != 0)
+                    {
+                        return View(matchingGuitars);
+                    }                        
                     else return RedirectToAction(nameof(NoMatchingGuitars));
                 }
                 else return NotFound();
@@ -93,8 +95,7 @@ namespace GuitarShop.Controllers
         public IActionResult WishList(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
-            var wishListGuitars = new List<Guitar>();
-            wishListGuitars.Add(guitar);
+            var wishListGuitars = new List<Guitar> { guitar };
 
             if (guitar == null) return NotFound();
             return View(wishListGuitars);
