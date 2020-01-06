@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GuitarShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GuitarShop.Models
+namespace GuitarShop.Services
 {
     public interface IGuitarInventory
     {
@@ -12,5 +13,7 @@ namespace GuitarShop.Models
         Guitar GetGuitarById(int guitarId);
 
         List<Guitar> Search(GuitarSpecification searchGuitar);
+
+        Guitar WishList(Guitar guitar);
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GuitarShop.Database;
+using GuitarShop.Models;
 
-namespace GuitarShop.Models
+
+namespace GuitarShop.Services
 {
     public class ContactRepository : IContactRepository
     {

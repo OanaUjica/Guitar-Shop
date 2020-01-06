@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using GuitarShop.Models;
+using GuitarShop.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarShop.Controllers
@@ -87,18 +85,6 @@ namespace GuitarShop.Controllers
             return View(guitar);
         }
 
-        /// <summary>
-        /// Action method GET invoked when the user chooses as favorite a guitar.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The View page with the new favorite guitar add to a list of favorite guitars.</returns>
-        public IActionResult WishList(int id)
-        {
-            var guitar = _guitarInventory.GetGuitarById(id);
-            var wishListGuitars = new List<Guitar> { guitar };
 
-            if (guitar == null) return NotFound();
-            return View(wishListGuitars);
-        }
     }
 }

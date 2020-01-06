@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using GuitarShop.Database;
+using GuitarShop.Models;
 
-
-namespace GuitarShop.Models
+namespace GuitarShop.Database
 {
     public static class DbInitializer
     {

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GuitarShop.Database;
+using GuitarShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace GuitarShop.Models
+
+namespace GuitarShop.Services
 {
     public class GuitarInventory : IGuitarInventory
     {
@@ -27,7 +29,7 @@ namespace GuitarShop.Models
         public Guitar GetGuitarById(int guitarId)
         {
             var specs = _appDbContext.GuitarSpecifications.ToList();
-            var guitarById = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitarId); ;
+            var guitarById = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitarId); 
             return guitarById;
         }
 
@@ -49,15 +51,38 @@ namespace GuitarShop.Models
                     if (guitar.Specifications.TopWood != _searchGuitar.TopWood) continue;
                     matchingGuitars.Add(guitar);
                 }
-                else return NullReferenceException();
+                else return NullReferenceExceptionForList();
             }
 
             return matchingGuitars;
         }
 
-        private List<Guitar> NullReferenceException()
+        private List<Guitar> NullReferenceExceptionForList()
         {
             throw new NotImplementedException("There are no specifications!");
+        }
+
+        private Guitar NullReferenceException()
+        {
+            throw new NotImplementedException("There are no specifications!");
+        }
+
+        public Guitar WishList(Guitar guitar)
+        {
+            var specs = _appDbContext.GuitarSpecifications.ToList();
+            //var allGuitars = _appDbContext.Guitars.ToList();
+            //var wishList = new List<Guitar>();
+
+            if (guitar != null)
+            {
+                var matchingGuitar = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitar.Id);
+                if (matchingGuitar != null)
+                {
+                    return matchingGuitar;
+                }
+                else return NullReferenceException();
+            }
+            return NullReferenceException();
         }
     }
 }

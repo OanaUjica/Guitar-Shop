@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GuitarShop.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace GuitarShop.Models
+
+namespace GuitarShop.Database
 {
     public class AppDbContext : DbContext
     {
@@ -16,6 +14,7 @@ namespace GuitarShop.Models
         public DbSet<Guitar> Guitars { get; set; }
         public DbSet<GuitarSpecification> GuitarSpecifications { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,11 +31,6 @@ namespace GuitarShop.Models
                     .HasForeignKey<GuitarSpecification>(gs => gs.Id);
             });
 
-            //modelBuilder.Entity<Guitar>()
-            //    .HasOne(g => g.Specifications).WithOne(spec => spec.Guitar)
-            //    .HasForeignKey<GuitarSpecification>(spec => spec.GuitarId);
-            //modelBuilder.Entity<Guitar>().ToTable("Guitars");
-            //modelBuilder.Entity<GuitarSpecification>().ToTable("Guitars");
         }
     }
 }

@@ -36,7 +36,7 @@ namespace GuitarShop.Models
         [Display(Name = "Top Wood")]
         public TopWood TopWood { get; set; }
 
-        //public int GuitarId { get; set; }
+
         public Guitar Guitar { get; set; }
     }
 

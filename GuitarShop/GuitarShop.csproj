@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20200105112314_InitialMigrationVersion2.Designer.cs" />
     <Compile Remove="Migrations\20200105112619_InitialMigrationVersion2.cs" />
     <Compile Remove="Migrations\20200105112619_InitialMigrationVersion2.Designer.cs" />
+    <Compile Remove="Migrations\20200105204329_WishList2.cs" />
+    <Compile Remove="Migrations\20200105204329_WishList2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

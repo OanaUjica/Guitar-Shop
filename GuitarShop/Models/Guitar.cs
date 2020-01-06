@@ -20,6 +20,7 @@ namespace GuitarShop.Models
         public string Description { get; set; }
 
         public GuitarSpecification Specifications { get; set; }
+
     }
 
 

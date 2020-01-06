@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GuitarShop.Models;
+﻿using GuitarShop.Database;
+using GuitarShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +22,10 @@ namespace GuitarShop
         {
             services.AddTransient<IGuitarInventory, GuitarInventory>();
             services.AddTransient<IContactRepository, ContactRepository>();
+            //services.AddTransient<IWishListRepository, WishListRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("GuitarV4.0.Connection")));
+                options.UseSqlServer(Configuration.GetConnectionString("GuitarV4.1.Connection")));
 
 
             services.AddMvc();
@@ -37,6 +34,15 @@ namespace GuitarShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();

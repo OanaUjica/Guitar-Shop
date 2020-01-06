@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GuitarShop.Models;
+using GuitarShop.Services;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Type = GuitarShop.Models.Type;
 
-namespace GuitarShop.Models
+namespace GuitarShop.Database
 {
     public class MockGuitarInventory //: IGuitarInventory
     {
@@ -86,5 +87,6 @@ namespace GuitarShop.Models
 
             return matchingGuitars;
         }
+
     }
 }
