@@ -37,7 +37,7 @@ namespace GuitarShop.Controllers
             var guitar = _guitarInventory.GetGuitarById(id);
             if (guitar == null) return NotFound();
 
-            var getWishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");            
+                       
             if (SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList") == null)
             {
                 List<WishListItem> wishList = new List<WishListItem>();
@@ -46,16 +46,29 @@ namespace GuitarShop.Controllers
             }
             else
             {
+                var getWishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
                 List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
                 wishList.Add(new WishListItem { Guitar = guitar });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "wishList", wishList);
-            }
-            //var wishListGuitar = _guitarInventory.WishList(guitar);
+            }            
 
             return RedirectToAction(nameof(Index));
         }
 
-
+        private int isExist(int id)
+        {
+            List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+            for (int i = 0; i < wishList.Count; ++i)
+            {
+                if (wishList[i].Guitar.Id == id) return i;                
+            }
+            return -1;
+        }
 
 
         public IActionResult Delete(int id)
