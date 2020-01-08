@@ -21,6 +21,10 @@
                     <h4><b>Type:</b> @Model.Specifications.Type</h4>
                     <h4><b>Back Wood:</b> @Model.Specifications.BackWood.Description()</h4>
                     <h4><b>Top Wood:</b> @Model.Specifications.TopWood.Description()</h4>
+                    @if (Model.IsGuitarOfTheWeek)
+                    {
+                        <h3 style="color:crimson"><b>Is guitar of the week!</b></h3>
+                    }
                 </div>
 
                 <div class="col-md-8" style="padding-top:87px;">
@@ -35,7 +39,7 @@
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-6">
-                    <a class="btn btn-warning btn-lg btn-block" asp-action="Create" asp-controller="WishList" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-heart-empty"></span>  Add to wishlist</a>
+                    <a class="btn btn-warning btn-lg btn-block" asp-action="AddToWishList" asp-controller="WishList" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-heart-empty"></span>  Add to wishlist</a>
                     <a class="btn btn-default btn-lg btn-block" asp-action="ShoppingCart" asp-controller="Guitar" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-shopping-cart"></span>  Add to shopping cart</a>
                 </div>
             </div>

@@ -42,7 +42,7 @@ namespace GuitarShop.Controllers
         /// View page with the list of matching guitars or with a validation error message in case of wrong input.
         /// </returns>
         [HttpPost]
-        public IActionResult MatchingGuitars([Bind("Builder,Model,Type,BackWood,TopWood")] GuitarSpecification guitars)
+        public IActionResult MatchingGuitarsAfterSearch([Bind("Builder,Model,Type,BackWood,TopWood")] GuitarSpecification guitars)
         {
             var matchingGuitars = new List<Guitar>();
 
@@ -51,11 +51,8 @@ namespace GuitarShop.Controllers
                 if (guitars != null)
                 {
                     matchingGuitars = _guitarInventory.Search(guitars);
-                    if (matchingGuitars.Count != 0)
-                    {
-                        return View(matchingGuitars);
-                    }                        
-                    else return RedirectToAction(nameof(NoMatchingGuitars));
+                    if (matchingGuitars.Count != 0) return View(matchingGuitars);
+                    else return RedirectToAction(nameof(NoMatchingGuitarsAfterSearch));
                 }
                 else return NotFound();
 
@@ -68,7 +65,7 @@ namespace GuitarShop.Controllers
         /// Action method GET invoked only if there is no matching guitars with the input form entered by the user.
         /// </summary>
         /// <returns>View page with a message for user.</returns>
-        public IActionResult NoMatchingGuitars()
+        public IActionResult NoMatchingGuitarsAfterSearch()
         {
             return View();
         }

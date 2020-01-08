@@ -67,22 +67,22 @@ namespace GuitarShop.Services
             throw new NotImplementedException("There are no specifications!");
         }
 
-        public Guitar WishList(Guitar guitar)
-        {
-            var specs = _appDbContext.GuitarSpecifications.ToList();
-            //var allGuitars = _appDbContext.Guitars.ToList();
-            //var wishList = new List<Guitar>();
+        //public Guitar WishList(Guitar guitar)
+        //{
+        //    var specs = _appDbContext.GuitarSpecifications.ToList();
+        //    //var allGuitars = _appDbContext.Guitars.ToList();
+        //    //var wishList = new List<Guitar>();
 
-            if (guitar != null)
-            {
-                var matchingGuitar = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitar.Id);
-                if (matchingGuitar != null)
-                {
-                    return matchingGuitar;
-                }
-                else return NullReferenceException();
-            }
-            return NullReferenceException();
-        }
+        //    if (guitar != null)
+        //    {
+        //        var matchingGuitar = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitar.Id);
+        //        if (matchingGuitar != null)
+        //        {
+        //            return matchingGuitar;
+        //        }
+        //        else return NullReferenceException();
+        //    }
+        //    return NullReferenceException();
+        //}
     }
 }

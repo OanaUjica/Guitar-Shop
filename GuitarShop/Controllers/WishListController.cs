@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using GuitarShop.Database;
 using GuitarShop.Models;
 using GuitarShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GuitarShop.Controllers
 {
@@ -17,6 +20,8 @@ namespace GuitarShop.Controllers
 
         public IActionResult Index()
         {
+            var wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+            ViewBag.wishList = wishList;
             return View();
 
         }
@@ -27,25 +32,47 @@ namespace GuitarShop.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>The View page with the new favorite guitar add to a list of favorite guitars.</returns>
-        public IActionResult Create(int id)
+        public IActionResult AddToWishList(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
             if (guitar == null) return NotFound();
 
-            var wishListGuitar = _guitarInventory.WishList(guitar);
-            var wishListGuitars = new List<Guitar>() { wishListGuitar };
-            return View(wishListGuitars);
+            var getWishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");            
+            if (SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList") == null)
+            {
+                List<WishListItem> wishList = new List<WishListItem>();
+                wishList.Add(new WishListItem { Guitar = guitar });
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "wishList", wishList);
+            }
+            else
+            {
+                List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+                wishList.Add(new WishListItem { Guitar = guitar });
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "wishList", wishList);
+            }
+            //var wishListGuitar = _guitarInventory.WishList(guitar);
+
+            return RedirectToAction(nameof(Index));
         }
 
 
-        //public IActionResult Create(int id)
-        //{       
 
-        //    var guitar = _guitarInventory.GetGuitarById(id);
-        //    if (guitar == null) return NotFound();
 
-        //    //_wishListRepository.AddGuitar(guitar);
-        //    //return RedirectToAction(nameof(Index));
-        //}
+        public IActionResult Delete(int id)
+        { 
+            var guitar = _guitarInventory.GetGuitarById(id);
+            if (guitar != null) return View(guitar);
+            return NotFound();
+        }
+
+
+        [HttpPost]
+        public IActionResult PostDelete(int id)
+        {
+
+            return View();
+        }
+
     }
+
 }

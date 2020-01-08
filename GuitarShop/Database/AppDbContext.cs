@@ -14,7 +14,7 @@ namespace GuitarShop.Database
         public DbSet<Guitar> Guitars { get; set; }
         public DbSet<GuitarSpecification> GuitarSpecifications { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        
+        public DbSet<WishListItem> WishListItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

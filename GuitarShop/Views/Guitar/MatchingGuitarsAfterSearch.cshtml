@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Guitar>
 
-
+<!-- Search result, with matching guitars -->
 <div style="background-color:darkgoldenrod">
 
-    <div class="container text-center" style="padding-top:100px; padding-bottom: 420px;">
-        <h1 class="text-center" style="padding-bottom:60px; color:black; font-size:45px;">Your WishList</h1>
+    <div class="container" style="padding-top:100px; padding-bottom: 116px;">
+        <h1 class="text-center" style="padding-bottom:60px; font-size:45px;">We have guitars of your preferences!</h1>
 
-        <div class="row" style="background-color:white; padding:30px 20px; border-radius:5px;">
-            <ul style="list-style-type: none;">
-                @foreach (var guitar in Model)
-                {
-
+        @foreach (var guitar in Model)
+        {
+            <div class="container" style="padding:10px;"></div>
+            <div class="row" style="background-color:white; padding:30px 20px; border-radius:5px;">
+                <ul style="list-style-type: none;">
                     <li style="font-size:25px;">
 
                         <a asp-action="Details" asp-controller="Guitar" asp-route-id="@guitar.Id" data-toggle="tooltip" title="View details of guitar @guitar.Specifications.Model">
@@ -31,17 +31,20 @@
                         </div>
 
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <a class="btn btn-default btn-lg btn-block" asp-action="ShoppingCart" asp-controller="Guitar" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-shopping-cart"></span>  Add to shopping cart</a>
                             <a class="btn btn-primary btn-lg btn-block" asp-action="Details" asp-controller="Guitar" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-eye-open"></span>  View details</a>
-                            <a class="btn btn-danger btn-lg btn-block" asp-action="Delete" asp-controller="Guitar" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-trash"></span>  Delete from wishlist</a>
+                            <a class="btn btn-warning btn-lg btn-block" asp-action="AddToWishList" asp-controller="WishList" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-heart-empty"></span>  Add to wishlist</a>
+                            <a class="btn btn-default btn-lg btn-block" asp-action="AddToShoppingCart" asp-controller="Guitar" asp-route-id="@guitar.Id"><span class="glyphicon glyphicon-shopping-cart"></span>  Add to shopping cart</a>
                         </div>
 
                     </li>
+                </ul>
 
-                }
-            </ul>
-        </div>
+            </div>
+        }
+
     </div>
 
 </div>
+
+
 

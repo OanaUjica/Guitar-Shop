@@ -13,7 +13,5 @@ namespace GuitarShop.Services
         Guitar GetGuitarById(int guitarId);
 
         List<Guitar> Search(GuitarSpecification searchGuitar);
-
-        Guitar WishList(Guitar guitar);
     }
 }
