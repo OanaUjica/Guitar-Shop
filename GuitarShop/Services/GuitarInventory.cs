@@ -51,38 +51,19 @@ namespace GuitarShop.Services
                     if (guitar.Specifications.TopWood != _searchGuitar.TopWood) continue;
                     matchingGuitars.Add(guitar);
                 }
-                else return NullReferenceExceptionForList();
+                else return NullReferenceException();
             }
 
             return matchingGuitars;
         }
 
-        private List<Guitar> NullReferenceExceptionForList()
+
+        // Method invoked only if there is no guitar in the database
+        private List<Guitar> NullReferenceException()
         {
             throw new NotImplementedException("There are no specifications!");
         }
 
-        private Guitar NullReferenceException()
-        {
-            throw new NotImplementedException("There are no specifications!");
-        }
 
-        //public Guitar WishList(Guitar guitar)
-        //{
-        //    var specs = _appDbContext.GuitarSpecifications.ToList();
-        //    //var allGuitars = _appDbContext.Guitars.ToList();
-        //    //var wishList = new List<Guitar>();
-
-        //    if (guitar != null)
-        //    {
-        //        var matchingGuitar = _appDbContext.Guitars.FirstOrDefault(g => g.Id == guitar.Id);
-        //        if (matchingGuitar != null)
-        //        {
-        //            return matchingGuitar;
-        //        }
-        //        else return NullReferenceException();
-        //    }
-        //    return NullReferenceException();
-        //}
     }
 }

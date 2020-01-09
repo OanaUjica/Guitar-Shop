@@ -25,8 +25,8 @@
                 </div>
 
                 <form method="post">
-                    <input type="submit" asp-action="PostDelete" asp-controller="WishList" asp-route-id="@Model.Id" value="Delete from WishList" class="btn btn-danger btn-lg btn-block" />
-                    <input type="submit" asp-action="Create" asp-controller="WishList" asp-route-id="@Model.Id" value="Back to WishList" class="btn btn-warning btn-lg btn-block" />
+                    <input type="submit" asp-action="ConfirmedDelete" asp-controller="WishList" asp-route-id="@Model.Id" value="Delete from WishList" class="btn btn-danger btn-lg btn-block" />
+                    <input type="submit" asp-action="Index" asp-controller="WishList" asp-route-id="@Model.Id" value="Back to WishList" class="btn btn-warning btn-lg btn-block" />
                 </form>
             </div>
         </div>

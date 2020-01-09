@@ -6,7 +6,7 @@ using Type = GuitarShop.Models.Type;
 
 namespace GuitarShop.Database
 {
-    public class MockGuitarInventory //: IGuitarInventory
+    public class MockGuitarInventory : IGuitarInventory
     {
         private List<Guitar> _guitars;
 

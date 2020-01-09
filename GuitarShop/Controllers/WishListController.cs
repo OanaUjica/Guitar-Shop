@@ -28,10 +28,10 @@ namespace GuitarShop.Controllers
 
 
         /// <summary>
-        /// Action method GET invoked when the user chooses as favorite a guitar.
+        /// Action method GET invoked when the user chooses as favorite a guitar, in the current session.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>The View page with the new favorite guitar add to a list of favorite guitars.</returns>
+        /// <returns>The View page with the new favorite guitar added to a list of favorite guitars.</returns>
         public IActionResult AddToWishList(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
@@ -60,17 +60,9 @@ namespace GuitarShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private int isExist(int id)
-        {
-            List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
-            for (int i = 0; i < wishList.Count; ++i)
-            {
-                if (wishList[i].Guitar.Id == id) return i;                
-            }
-            return -1;
-        }
 
 
+        // Action method GET invoked when the user wants to delete a guitar from the WishList
         public IActionResult Delete(int id)
         { 
             var guitar = _guitarInventory.GetGuitarById(id);
@@ -79,11 +71,27 @@ namespace GuitarShop.Controllers
         }
 
 
+        // Action method POST invoked after confirmation that the guitar selected can be deleted from the WishList.
         [HttpPost]
-        public IActionResult PostDelete(int id)
+        public IActionResult ConfirmedDelete(int id)
         {
+            List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+            int index = isExist(id);
+            wishList.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "wishList", wishList);
+            return RedirectToAction(nameof(Index));
+        }
 
-            return View();
+
+        // Method invoked to verify if there is any guitar in the WishList and the indexes of the guitars if they exist, in the current session.
+        private int isExist(int id)
+        {
+            List<WishListItem> wishList = SessionHelper.GetObjectFromJson<List<WishListItem>>(HttpContext.Session, "wishList");
+            for (int i = 0; i < wishList.Count; ++i)
+            {
+                if (wishList[i].Guitar.Id == id) return i;
+            }
+            return -1;
         }
 
     }
