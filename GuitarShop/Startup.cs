@@ -2,6 +2,7 @@
 using GuitarShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,7 @@ namespace GuitarShop
         {
             services.AddTransient<IGuitarInventory, GuitarInventory>();
             services.AddTransient<IContactRepository, ContactRepository>();
-            //services.AddTransient<IWishListRepository, WishListRepository>();
+            
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GuitarV4.1.Connection")));
@@ -30,6 +31,8 @@ namespace GuitarShop
 
             services.AddMvc();
             services.AddSession();
+            services.AddMemoryCache();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

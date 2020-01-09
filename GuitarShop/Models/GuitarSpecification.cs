@@ -35,22 +35,33 @@ namespace GuitarShop.Models
 
 
         public Guitar Guitar { get; set; }
+
+        public Boolean Matches(GuitarSpecification otherSpecifications)
+        {
+            if (Builder != otherSpecifications.Builder) return false;
+            if (Model != otherSpecifications.Model) return false;
+            if (Type != otherSpecifications.Type) return false;
+            if (BackWood != otherSpecifications.BackWood) return false;
+            if (TopWood != otherSpecifications.TopWood) return false;
+            return true;
+        }
     }
+
 
     public enum Builder
     {
-        Fender = 0, Martin, Taylor, Yamaha, Ibanez, Gibson, Epiphone
+        Fender, Martin, Taylor, Yamaha, Ibanez, Gibson, Epiphone
     }
 
     public enum Type
     {
-        electric = 0, acoustic
+        electric, acoustic
     }
 
     public enum Model
     {
         [Description("Stratocaster")]
-        Stratocaster = 0,
+        Stratocaster,
         [Display(Name = "Martin D-28")]
         [Description("Martin D-28")]
         MartinD28,
@@ -80,7 +91,7 @@ namespace GuitarShop.Models
     public enum BackWood
     {
         [Description("Alder")]
-        Alder = 0,
+        Alder,
         [Display(Name = "East Indian Rosewood")]
         [Description("East Indian Rosewood")]
         EastIndianRosewood,
@@ -107,7 +118,7 @@ namespace GuitarShop.Models
     public enum TopWood
     {
         [Description("Alder")]
-        Alder = 0,
+        Alder,
         [Display(Name = "Sitka Spruce")]
         [Description("Sitka Spruce")]
         SitkaSpruce,

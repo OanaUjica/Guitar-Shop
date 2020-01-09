@@ -1,0 +1,59 @@
+﻿
+
+
+<div style="background-color:darkgoldenrod">
+
+    <div class="container text-center" style="padding-top:100px; padding-bottom: 670px;">
+        <h1 class="text-center" style="padding-bottom:60px; color:black; font-size:45px;">Your Shopping Cart</h1>
+        <div class="container" style="background-color:black; padding-right:40px; padding-left:40px; border-radius:5px;">
+            @foreach (var item in ViewBag.cart)
+            {
+                <div class="container" style="padding:10px;"></div>
+                <div class="row" style="background-color:white; padding:30px 20px; border-radius:7px;">
+                    <ul style="list-style-type: none;">
+                        <li style="font-size:25px;">
+
+                            <a asp-action="Details" asp-controller="Guitar" asp-route-id="@item.Guitar.Id" data-toggle="tooltip" title="View details of guitar @item.Guitar.Specifications.Model">
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <img src="@item.Guitar.ImageUrl" alt="guitar" style="width: 100%" class="img-responsive">
+                                </div>
+                            </a>
+
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <ul style="list-style-type: none;">
+                                    <li style="font-size:30px;">
+                                        <b>Quantity: @item.Quantity</b>
+                                        @*@{
+                                            ViewBag.Quantity = new List<int> { 1, 2, 3 };
+                                            List<int> Quantity = (List<int>)ViewBag.Quantity;
+                                            @Html.DropDownList("Quantity", new SelectList(Quantity))
+                                        }*@
+                                    </li>
+                                    <li style="font-size:30px;"><b>@(item.Guitar.Price * item.Quantity) €</b></li>
+                                    <li><h4>@item.Guitar.Specifications.Builder</h4></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <a class="btn btn-warning btn-lg btn-block" asp-action="AddToWishList" asp-controller="WishList" asp-route-id="@item.Guitar.Id">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>  Add to wishlist
+                                </a>
+                                <a class="btn btn-primary btn-lg btn-block" asp-action="Details" asp-controller="Guitar" asp-route-id="@item.Guitar.Id">
+                                    <span class="glyphicon glyphicon-eye-open"></span>  View details
+                                </a>
+                                <a class="btn btn-danger btn-lg btn-block" asp-action="Delete" asp-controller="ShoppingCart" asp-route-id="@item.Guitar.Id">
+                                    <span class="glyphicon glyphicon-trash"></span>  Delete from shopping cart
+                                </a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            }
+            <h1 class="pull-right" style="color:white">Total: @ViewBag.Total €</h1>
+        </div>        
+    </div>
+</div>
+
+
+

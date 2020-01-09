@@ -1,0 +1,39 @@
+﻿@model Guitar
+
+
+<div style="background-color:darkgoldenrod">
+
+    <div class="container text-center" style="padding-top:100px; padding-bottom: 316px;">
+        <h1 class="text-center" style="padding-bottom:60px; color:black; font-size:45px;">Are you sure you want to delete this guitar?</h1>
+
+        <div class="row" style="background-color:white; padding:30px 20px; border-radius:5px;">
+            <a asp-action="Details" asp-controller="Guitar" asp-route-id="@Model.Id" data-toggle="tooltip" title="View details of guitar @Model.Specifications.Model">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <img src="@Model.ImageUrl" alt="guitar" style="width: 100%" class="img-responsive">
+                </div>
+            </a>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <ul style="list-style-type: none;">
+                    <li style="font-size:30px;"><b>@Model.Price €</b></li>
+                    <li><h4><b>Model: </b>@Model.Specifications.Model</h4></li>
+                    <li><h4><b>Builder: </b>@Model.Specifications.Builder</h4></li>
+                    <li><h4><b>Type: </b>@Model.Specifications.Type</h4></li>
+                    <li><h4><b>BackWood: </b>@Model.Specifications.BackWood</h4></li>
+                    <li><h4><b>TopWood: </b>@Model.Specifications.TopWood</h4></li>
+                </ul>
+            </div>
+
+            <form method="post">
+                <input type="submit" asp-action="ConfirmedDelete" asp-controller="ShoppingCart" asp-route-id="@Model.Id" value="Delete from ShoppingCart" class="btn btn-danger btn-lg btn-block" />
+                <input type="submit" asp-action="Index" asp-controller="ShoppingCart" asp-route-id="@Model.Id" value="Back to ShoppingCart" class="btn btn-warning btn-lg btn-block" />
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

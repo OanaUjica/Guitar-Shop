@@ -19,9 +19,7 @@ namespace GuitarShop.Services
         // Get all guitars from database
         public List<Guitar> GetAllGuitars()
         {
-            var specs = _appDbContext.GuitarSpecifications.ToList();
-            var allGuitars = _appDbContext.Guitars.ToList();
-
+            var allGuitars = GetGuitarsFromDatabase();
             return allGuitars;
         }
 
@@ -34,29 +32,30 @@ namespace GuitarShop.Services
         }
 
         // Search for the list of guitar, from the database, that matches the user requirements
-        public List<Guitar> Search(GuitarSpecification _searchGuitar)
+        public List<Guitar> Search(GuitarSpecification searchGuitar)
         {
             var matchingGuitars = new List<Guitar>();
-            var spec = _appDbContext.GuitarSpecifications.ToList();
-            var allPropGuitars = _appDbContext.Guitars.ToList();
+            var allGuitars = GetGuitarsFromDatabase();
 
-            foreach (var guitar in allPropGuitars)
+            foreach (var guitar in allGuitars)
             {
                 if(guitar != null)
                 {
-                    if (guitar.Specifications.Builder != _searchGuitar.Builder) continue;
-                    if (guitar.Specifications.Model != _searchGuitar.Model) continue;
-                    if (guitar.Specifications.Type != _searchGuitar.Type) continue;
-                    if (guitar.Specifications.BackWood != _searchGuitar.BackWood) continue;
-                    if (guitar.Specifications.TopWood != _searchGuitar.TopWood) continue;
-                    matchingGuitars.Add(guitar);
-                }
+                    if (guitar.Specifications.Matches(searchGuitar)) matchingGuitars.Add(guitar);
+                }                    
                 else return NullReferenceException();
             }
-
             return matchingGuitars;
         }
 
+
+        // Method invoked to get all the guitars from database
+        private List<Guitar> GetGuitarsFromDatabase()
+        {
+            var specs = _appDbContext.GuitarSpecifications.ToList();
+            var allGuitars = _appDbContext.Guitars.ToList();
+            return allGuitars;
+        }
 
         // Method invoked only if there is no guitar in the database
         private List<Guitar> NullReferenceException()
