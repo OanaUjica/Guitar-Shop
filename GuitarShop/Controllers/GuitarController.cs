@@ -19,7 +19,10 @@ namespace GuitarShop.Controllers
         public IActionResult Index()
         {            
             var guitars = _guitarInventory.GetAllGuitars();
-            if (guitars != null) return View(guitars);
+            if (guitars != null)
+            {
+                return View(guitars);
+            }
             return NotFound();
         }
 
@@ -51,10 +54,19 @@ namespace GuitarShop.Controllers
                 if (guitars != null)
                 {
                     matchingGuitars = _guitarInventory.Search(guitars);
-                    if (matchingGuitars.Count != 0) return View(matchingGuitars);
-                    else return RedirectToAction(nameof(NoMatchingGuitarsAfterSearch));
+                    if (matchingGuitars.Count != 0)
+                    {
+                        return View(matchingGuitars);
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(NoMatchingGuitarsAfterSearch));
+                    }
                 }
-                else return NotFound();
+                else
+                {
+                    return NotFound();
+                }
 
             }
             return RedirectToAction(nameof(Search));
@@ -78,7 +90,10 @@ namespace GuitarShop.Controllers
         public IActionResult Details(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
-            if (guitar == null) return NotFound();
+            if (guitar == null)
+            {
+                return NotFound();
+            }
             return View(guitar);
         }
 

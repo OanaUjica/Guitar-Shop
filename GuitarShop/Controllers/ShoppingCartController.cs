@@ -26,7 +26,11 @@ namespace GuitarShop.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Action method GET invoked when the user chooses to buy a guitar, in the current session.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The View page with the new guitar added to a list of shopping cart guitars.</returns>
         public IActionResult AddToShoppingCart(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
@@ -34,17 +38,21 @@ namespace GuitarShop.Controllers
 
             if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") == null)
             {
-                List<ShoppingCartItem> cart = new List<ShoppingCartItem>();
+                var cart = new List<ShoppingCartItem>();
                 cart.Add(new ShoppingCartItem { Guitar = guitar, Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
             {                
-                List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
-                int index = isExist(id);
-                if (index != -1)
+                var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+
+                if (IsGuitarExitingInShoppingCart(id))
                 {
-                    cart[index].Quantity++;                    
+                    int index = GetIndexForShoppingCartGuitar(id);
+                    if (index != -1)
+                    {
+                        cart[index].Quantity++;
+                    }                                     
                 }
                 else
                 {
@@ -56,31 +64,62 @@ namespace GuitarShop.Controllers
         }
 
 
-
+        // Action method GET invoked when the user wants to delete a guitar from the ShoppingCart
         public IActionResult Delete(int id)
         {
             var guitar = _guitarInventory.GetGuitarById(id);
-            if (guitar != null) return View(guitar);
+            if (guitar != null)
+            {
+                return View(guitar);
+            }
             return NotFound();
         }
 
-
+        // Action method POST invoked after confirmation that the guitar selected can be deleted from the ShoppingCart.
         [HttpPost]
         public IActionResult ConfirmedDelete(int id)
         {
-            List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
-            int index = isExist(id);
-            cart.RemoveAt(index);
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+
+            if (IsGuitarExitingInShoppingCart(id))
+            {
+                int index = GetIndexForShoppingCartGuitar(id);
+                if (index != -1)
+                {
+                    cart.RemoveAt(index);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+            }
             return RedirectToAction(nameof(Index));
         }
 
-        private int isExist(int id)
+
+        // Method invoked to verify if there is any guitar in the Shopping Cart in the current session.
+        private bool IsGuitarExitingInShoppingCart(int id)
         {
-            List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+            var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; ++i)
             {
-                if (cart[i].Guitar.Id == id) return i;
+                if (cart[i].Guitar.Id == id)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        // Method invoked to take the index of the guitar from the Shopping Cart in the current session that has the same Id with the guitar ID introduced as parameter.
+        private int GetIndexForShoppingCartGuitar(int id)
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].Guitar.Id == id)
+                {
+                    return i;
+                }
             }
             return -1;
         }
